@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+system.xml
+Improntus. 3rd November, 2025.
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="improntus_update_cart_ajax" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="0">
+            <class>separator-top</class>
+            <label>Update Cart Ajax</label>
+            <tab>improntus_extensions</tab>
+            <resource>Improntus_UpdateCartAjax::acl_rule</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable or disable the Auto Update Cart Ajax feature.</comment>
+                </field>
+                <field id="ajax_trigger_mode" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Enable</label>
+                    <source_model>Improntus\UpdateCartAjax\Model\Config\Source\AjaxTriggerMode</source_model>
+                    <comment>Select the Ajax Trigger Mode for updating the cart.</comment>
+                    <depends>
+                        <field id="*/*/enable">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

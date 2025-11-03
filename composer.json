@@ -1,0 +1,18 @@
+{
+    "name": "improntus/module-update-cart-ajax",
+    "description": "Magento 2 module to update cart items via AJAX",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "author": {
+        "name": "Ignacio Muñoz",
+        "email": "ignacio.munoz@improntus.com"
+    },
+    "autoload": {
+        "psr-4": {
+            "Improntus\\UpdateCartAjax\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

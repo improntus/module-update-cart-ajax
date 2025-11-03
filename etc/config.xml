@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+config.xml
+Improntus. 3rd November, 2025.
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <improntus_update_cart_ajax>
+            <general>
+                <enable>0</enable>
+                <ajax_trigger_mode>button</ajax_trigger_mode>
+            </general>
+        </improntus_update_cart_ajax>
+    </default>
+</config>
