@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!--
+di.xml
+Improntus. 12th January, 2026.
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Block\Cart\Item\Renderer">
+        <plugin name="improntus_update_cart_ajax_item_renderer_plugin" type="Improntus\UpdateCartAjax\Plugin\Block\Cart\Item\RendererPlugin" sortOrder="10"/>
+    </type>
+</config>

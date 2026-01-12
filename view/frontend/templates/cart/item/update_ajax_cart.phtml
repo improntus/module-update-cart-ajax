@@ -23,7 +23,9 @@ $sku = $item?->getSku() ?? '';
                 "ajaxCart": {
                     "productId": "<?= $escaper->escapeJs($sku) ?>",
                     "allowedModes" : <?= /* @noEscape */ $block->getAllowedModes() ?>,
-                    "triggerMode": "<?= $escaper->escapeJs($ajaxTriggerMode) ?>"
+                    "triggerMode": "<?= $escaper->escapeJs($ajaxTriggerMode) ?>",
+                    "increaseQtySelector": "#<?= $escaper->escapeJs($item->getId()) ?>-upt",
+                    "decreaseQtySelector": "#<?= $escaper->escapeJs($item->getId()) ?>-dec"
                 }
             }
         }

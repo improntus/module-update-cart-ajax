@@ -1,10 +1,9 @@
 define([
     'jquery',
-    'jquery/ui',
     'Magento_Checkout/js/action/get-totals',
     'Magento_Customer/js/customer-data',
     'mage/validation',
-], function ($, ui, totalAction, customerData) {
+], function ($, totalAction, customerData) {
     $.widget('mage.ajaxCart', {
         options: {
             qtyInput: '[data-cart-item-id="%s"]',
@@ -53,6 +52,7 @@ define([
          * @param {*} items
          */
         handleAutoChange: function (items) {
+            this.addIncreaseDecreaseListeners(items);
             items.on('change', (event) => {
                 const { currentTarget } = event;
                 const isValid =
@@ -63,6 +63,23 @@ define([
                     this._updateCart();
                 }
             });
+        },
+
+        /**
+         * Add listeners to increase/decrease buttons
+         * @param {*} items
+         */
+        addIncreaseDecreaseListeners: function (items) {
+            const { increaseQtySelector, decreaseQtySelector } = this.options;
+            $(`${increaseQtySelector}, ${decreaseQtySelector}`).off('.ajaxCart').on('click.ajaxCart', (e) => {
+                e.preventDefault();
+                const isIncrease = $(e.currentTarget).is(increaseQtySelector);
+                const currentQty = Number(items.val()) || 1;
+                let newQty = isIncrease ? currentQty + 1 : currentQty - 1;
+                newQty = newQty < 1 ? 1 : newQty;
+                items.val(newQty).trigger('change');
+            });
+
         },
 
         /**

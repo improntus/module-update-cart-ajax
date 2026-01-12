@@ -6,25 +6,32 @@ Improntus. 3rd November, 2025.
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="checkout.cart.item.renderers.simple.actions">
-            <block before="-" class="Improntus\UpdateCartAjax\Block\Cart\Item\AjaxCartConfig" name="improntus.update.cart.ajax.simple.item" as="ajax.cart.simple.item" template="Improntus_UpdateCartAjax::cart/item/update_ajax_cart.phtml"/>
+            <block before="-" class="Improntus\UpdateCartAjax\Block\Cart\Item\AjaxCartConfig" name="improntus.update.cart.ajax.simple.item" as="ajax.cart.simple.item"
+                template="Improntus_UpdateCartAjax::cart/item/update_ajax_cart.phtml"/>
         </referenceBlock>
         <referenceBlock name="checkout.cart.item.renderers.default.actions">
-            <block before="-" class="Improntus\UpdateCartAjax\Block\Cart\Item\AjaxCartConfig" name="improntus.update.cart.ajax.default.item" as="ajax.cart.default.item" template="Improntus_UpdateCartAjax::cart/item/update_ajax_cart.phtml"/>
+            <block before="-" class="Improntus\UpdateCartAjax\Block\Cart\Item\AjaxCartConfig" name="improntus.update.cart.ajax.default.item" as="ajax.cart.default.item"
+                template="Improntus_UpdateCartAjax::cart/item/update_ajax_cart.phtml"/>
         </referenceBlock>
         <referenceBlock name="checkout.cart.item.renderers.bundle.actions">
-            <block before="-" class="Improntus\UpdateCartAjax\Block\Cart\Item\AjaxCartConfig" name="improntus.update.cart.ajax.item.bundle" as="ajax.cart.item.bundle" template="Improntus_UpdateCartAjax::cart/item/update_ajax_cart.phtml"/>
+            <block before="-" class="Improntus\UpdateCartAjax\Block\Cart\Item\AjaxCartConfig" name="improntus.update.cart.ajax.item.bundle" as="ajax.cart.item.bundle"
+                template="Improntus_UpdateCartAjax::cart/item/update_ajax_cart.phtml"/>
         </referenceBlock>
         <referenceBlock name="checkout.cart.item.renderers.downloadable.actions">
-            <block before="-" class="Improntus\UpdateCartAjax\Block\Cart\Item\AjaxCartConfig" name="improntus.update.cart.ajax.item.downloadable" as="ajax.cart.item.downloadable" template="Improntus_UpdateCartAjax::cart/item/update_ajax_cart.phtml"/>
+            <block before="-" class="Improntus\UpdateCartAjax\Block\Cart\Item\AjaxCartConfig" name="improntus.update.cart.ajax.item.downloadable" as="ajax.cart.item.downloadable"
+                template="Improntus_UpdateCartAjax::cart/item/update_ajax_cart.phtml"/>
         </referenceBlock>
         <referenceBlock name="checkout.cart.item.renderers.grouped.actions">
-            <block before="-" class="Improntus\UpdateCartAjax\Block\Cart\Item\AjaxCartConfig" name="improntus.update.cart.ajax.item.grouped" as="ajax.cart.item.grouped" template="Improntus_UpdateCartAjax::cart/item/update_ajax_cart.phtml"/>
+            <block before="-" class="Improntus\UpdateCartAjax\Block\Cart\Item\AjaxCartConfig" name="improntus.update.cart.ajax.item.grouped" as="ajax.cart.item.grouped"
+                template="Improntus_UpdateCartAjax::cart/item/update_ajax_cart.phtml"/>
         </referenceBlock>
         <referenceBlock name="checkout.cart.item.renderers.configurable.actions">
-            <block before="-" class="Improntus\UpdateCartAjax\Block\Cart\Item\AjaxCartConfig" name="improntus.update.cart.ajax.item.configurable" as="ajax.cart.item.configurable" template="Improntus_UpdateCartAjax::cart/item/update_ajax_cart.phtml"/>
+            <block before="-" class="Improntus\UpdateCartAjax\Block\Cart\Item\AjaxCartConfig" name="improntus.update.cart.ajax.item.configurable" as="ajax.cart.item.configurable"
+                template="Improntus_UpdateCartAjax::cart/item/update_ajax_cart.phtml"/>
         </referenceBlock>
         <referenceBlock name="checkout.cart.item.renderers.virtual.actions">
-            <block before="-" class="Improntus\UpdateCartAjax\Block\Cart\Item\AjaxCartConfig" name="improntus.update.cart.ajax.item.virtual" as="ajax.cart.item.virtual" template="Improntus_UpdateCartAjax::cart/item/update_ajax_cart.phtml"/>
+            <block before="-" class="Improntus\UpdateCartAjax\Block\Cart\Item\AjaxCartConfig" name="improntus.update.cart.ajax.item.virtual" as="ajax.cart.item.virtual"
+                template="Improntus_UpdateCartAjax::cart/item/update_ajax_cart.phtml"/>
         </referenceBlock>
     </body>
 </page>
