@@ -8,6 +8,7 @@ Improntus. 3rd November, 2025.
         <improntus_update_cart_ajax>
             <general>
                 <enable>0</enable>
+                <add_qty_buttons>0</add_qty_buttons>
                 <ajax_trigger_mode>button</ajax_trigger_mode>
             </general>
         </improntus_update_cart_ajax>

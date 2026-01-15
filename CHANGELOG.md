@@ -1,6 +1,14 @@
 CHANGELOG
 ---------
 
+### 1.0.3 (2026-01-15)
+
+* Added `addEnterKeyListener` function in `ajax-cart.js` to allow quantity updates via Enter key press.
+* Added config `add_qty_buttons` to enable or disable quantity increase and decrease buttons in cart items.
+* Updated `system.xml` to include description for `add_qty_buttons` config field.
+* Update `RendererPlugin` to conditionally override cart item template only when `add_qty_buttons` is enabled.
+* Updated `config.xml` to set default value of `add_qty_buttons` to disabled (0).
+
 ### 1.0.2 (2026-01-15)
 
 * Added `updateItemQty` API call validation before sending update request to ensure quantity is valid.

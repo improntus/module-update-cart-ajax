@@ -57,6 +57,7 @@ define([
          */
         handleAutoChange: function (items) {
             this.addIncreaseDecreaseListeners(items);
+            this.addEnterKeyListener(items);
             items.on('change', (event) => {
                 const { currentTarget } = event;
                 const isValid =
@@ -65,6 +66,19 @@ define([
 
                 if (this.options.changesHandled && !isNaN(newQty) && isValid) {
                     this._updateCart();
+                }
+            });
+        },
+
+        /**
+         * Add Enter key listener to quantity inputs
+         * @param {*} items
+         */
+        addEnterKeyListener: function (items) {
+            items.off('keypress.ajaxCart').on('keypress.ajaxCart', (e) => {
+                if (e.which === 13 || e.keyCode === 13) {
+                    e.preventDefault();
+                    $(e.currentTarget).trigger('change');
                 }
             });
         },

@@ -16,6 +16,7 @@ class Config
 {
     private const XML_PATH_IMPRONTUS_UPDATE_CART_AJAX_GENERAL_ENABLE = 'improntus_update_cart_ajax/general/enable';
     private const XML_PATH_IMPRONTUS_UPDATE_CART_AJAX_GENERAL_AJAX_TRIGGER_MODE = 'improntus_update_cart_ajax/general/ajax_trigger_mode';
+    private const XML_PATH_IMPRONTUS_UPDATE_CART_AJAX_GENERAL_ADD_QTY_BUTTONS = 'improntus_update_cart_ajax/general/add_qty_buttons';
 
     /**
      * Consturctor
@@ -64,6 +65,18 @@ class Config
     {
         return (string) $this->getConfigValue(
             self::XML_PATH_IMPRONTUS_UPDATE_CART_AJAX_GENERAL_AJAX_TRIGGER_MODE
+        );
+    }
+
+    /**
+     * Check if the Add Qty Buttons feature is enabled in the system configuration.
+     *
+     * @return boolean
+     */
+    public function isAddQtyButtonsEnabled(): bool
+    {
+        return (bool) $this->getConfigValue(
+            self::XML_PATH_IMPRONTUS_UPDATE_CART_AJAX_GENERAL_ADD_QTY_BUTTONS
         );
     }
 }

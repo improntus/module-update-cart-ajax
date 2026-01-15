@@ -35,7 +35,7 @@ class RendererPlugin
         Renderer $subject,
         string $result
     ) {
-        if ($this->serviceConfig->isEnabled()) {
+        if ($this->serviceConfig->isAddQtyButtonsEnabled()) {
             return self::TEMPLATE_PATH;
         }
 

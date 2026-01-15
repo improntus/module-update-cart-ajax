@@ -15,7 +15,12 @@ Improntus. 3rd November, 2025.
                 <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
                     <label>Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment><![CDATA[Enable or disable the Auto Update Cart Ajax feature.</br> <span style="font-weight: bold;">⚠️ When this feature is enabled, the cart item template will be overridden to include the necessary JavaScript functionality.</span> ]]></comment>
+                    <comment><![CDATA[Enable or disable the Auto Update Cart Ajax feature. <span style="font-weight: bold;">⚠️ Make sure to clear the cache after changing this setting.</span>]]></comment>
+                </field>
+                <field id="add_qty_buttons" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Enable Qty Buttons</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[<span style="font-weight: bold;">⚠️ When this feature is enabled, the cart item template will be overridden to include the necessary JavaScript functionality.</span> ]]></comment>
                 </field>
                 <field id="ajax_trigger_mode" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
                     <label>Enable</label>
