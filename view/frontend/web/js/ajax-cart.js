@@ -2,10 +2,14 @@ define([
     'jquery',
     'Magento_Checkout/js/action/get-totals',
     'Magento_Customer/js/customer-data',
+    'Magento_Ui/js/modal/alert',
     'mage/validation',
-], function ($, totalAction, customerData) {
+], function ($, totalAction, customerData, alert) {
     $.widget('mage.ajaxCart', {
         options: {
+            validationURL: '',
+            updateCartActionContainer: '',
+            eventName: 'updateCartItemQty',
             qtyInput: '[data-cart-item-id="%s"]',
             updateButton: '[data-cart-item-update]',
             lastValues: {},
@@ -97,15 +101,112 @@ define([
          * Update cart via AJAX (entry point)
          */
         _updateCart: function () {
-            const form = $('form#form-validate');
-            if (!form.length) {
+            const $form = $('form#form-validate');
+            if (!$form.length) {
                 console.warn('ajaxCart: form#form-validate not found');
                 return;
             }
 
-            const payload = form.serialize();
-            const url = form.attr('action') || window.location.href;
-            this._sendUpdateRequest(url, payload);
+            const action = $form.find(this.options.updateCartActionContainer).val();
+            
+            // Skip validation for empty cart or if no validation URL configured
+            if (!this.options.validationURL || action === 'empty_cart') {
+                const payload = $form.serialize();
+                const url = $form.attr('action') || window.location.href;
+                this._sendUpdateRequest(url, payload);
+                return;
+            }
+
+            // Validate form first
+            const isValid = $form.validation() && $form.validation('isValid');
+            if (!isValid) {
+                return;
+            }
+
+            // Perform async server-side validation
+            this.validateItems($form);
+        },
+
+        /**
+         * Validates updated shopping cart data.
+         * @param {*} $form
+         */
+        validateItems: function ($form) {
+            const validationURL = this.options.validationURL,
+            data = $form.serialize(),
+            actionUrl = $form.attr('action') || window.location.href;
+
+            $.extend(data, {
+                'form_key': $.mage.cookies.get('form_key')
+            });
+
+            $.ajax({
+                url: validationURL,
+                data: data,
+                type: 'post',
+                dataType: 'json',
+                context: this,
+
+                /** @inheritdoc */
+                beforeSend: function () {
+                    $(document.body).trigger('processStart');
+                },
+
+                /** @inheritdoc */
+                complete: function () {
+                    $(document.body).trigger('processStop');
+                }
+            })
+                .done(function (response) {
+                    if (response.success) {
+                        this.onSuccess();
+                        this._sendUpdateRequest(actionUrl, data);
+                    } else {
+                        this.onError(response);
+                    }
+                })
+                .fail(function () {
+                    this._onUpdateError({ responseText: 'Validation request failed' });
+                });
+        },
+
+        /**
+         * Item Quantity Form validation failed.
+         */
+        onError: function (response) {
+            let elm,
+                responseData = [];
+
+            try {
+                responseData = JSON.parse(response['error_message']);
+            } catch (error) {
+            }
+
+            if (response['error_message']) {
+                try {
+                    $.each(responseData, function (index, data) {
+                        if (data.itemId !== undefined) {
+                            elm = $('#cart-' + data.itemId + '-qty');
+                            elm.val(elm.attr('data-item-qty'));
+                        }
+                        response['error_message'] = data.error;
+                    });
+                } catch (e) {}
+                alert({
+                    content: response['error_message'],
+                    actions: {
+                        /** @inheritdoc */
+                        always: function () {}
+                    }
+                });
+            }
+        },
+
+        /**
+         * Form validation succeed.
+         */
+        onSuccess: function () {
+            $(document).trigger('ajax:' + this.options.eventName);
         },
 
         /**

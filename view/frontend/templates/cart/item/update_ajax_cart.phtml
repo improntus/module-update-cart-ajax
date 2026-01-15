@@ -19,13 +19,15 @@ $sku = $item?->getSku() ?? '';
     <?php $ajaxTriggerMode = $block->getAjaxTriggerMode(); ?>
     <script type="text/x-magento-init">
         {
-            "[data-cart-item-id='<?= $escaper->escapeJs($sku) ?>']": {
+            "*": {
                 "ajaxCart": {
                     "productId": "<?= $escaper->escapeJs($sku) ?>",
                     "allowedModes" : <?= /* @noEscape */ $block->getAllowedModes() ?>,
                     "triggerMode": "<?= $escaper->escapeJs($ajaxTriggerMode) ?>",
                     "increaseQtySelector": "#<?= $escaper->escapeJs($item->getId()) ?>-upt",
-                    "decreaseQtySelector": "#<?= $escaper->escapeJs($item->getId()) ?>-dec"
+                    "decreaseQtySelector": "#<?= $escaper->escapeJs($item->getId()) ?>-dec",
+                    "validationURL" : "<?= $escaper->escapeJs($block->getUrl('checkout/cart/updateItemQty')) ?>",
+                    "updateCartActionContainer": "#update_cart_action_container"
                 }
             }
         }
